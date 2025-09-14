@@ -317,9 +317,7 @@ END
   done
 
   sleep 0.5s
-  [ -n "$(magisk -v >&2)" ] || \
-    abort "! Unable to launch Magisk daemon"
-
+  echo $(magisk -v)
   ui_print "- Welcome to Magisk On System"
   return 0
 }
