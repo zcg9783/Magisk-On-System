@@ -106,7 +106,7 @@ abstract class MagiskInstallImpl protected constructor(
 
     private suspend fun extractFiles(): Boolean {
         console.add("- Device platform: ${Const.CPU_ABI}")
-        console.add("- Installing: ${BuildConfig.APP_VERSION_NAME} (${BuildConfig.APP_VERSION_CODE})")
+        console.add("- Core version: ${BuildConfig.APP_VERSION_NAME} (${BuildConfig.APP_VERSION_CODE})")
 
         installDir = localFS.getFile(context.filesDir.parent, "install")
         installDir.deleteRecursively()
