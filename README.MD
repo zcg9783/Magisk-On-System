@@ -8,7 +8,9 @@
 
 ## 安装
 
-### 方式一：Patch System
+### 方式一：Patch System  
+
+**不推荐在真机上使用，除非您的设备很特殊(校验boot但不校验逻辑分区)**  
 
 #### Step 1:前往Release页面  
 打开本仓库的[release](https://gitee.com/zcg9783/magisk-on-system/releases)页面下载以"MOS_Patch"开头的Zip文件  
@@ -25,12 +27,14 @@ chmod +x start.sh
 ./start.sh
 ```
 
-Patch完成后生成flash_all.bat与镜像到out文件夹
+Patch完成后生成flash_all.bat与镜像到out文件夹  
+
+**注：如果您的设备为动态分区，您需要进入FastbootD模式才可以正常运行flash_all.bat*
 
 ### 方式二：在已有root的基础上进行安装  
 
 #### Step 1:前往Release页面  
-打开本仓库的[release](https://gitee.com/zcg9783/magisk-on-system/releases)页面下载以Magisk On System.apk 
+打开本仓库的[release](https://github.com/zcg9783/magisk-on-system/releases)页面下载以Magisk On System.apk 
 
 #### Step 2：直接安装
 打开Magisk On System，确认已授予ROOT权限。然后依次点击  
@@ -41,13 +45,13 @@ Patch完成后生成flash_all.bat与镜像到out文件夹
 
 如果您正在使用“虚拟机”/“云手机”等设备,请检查**Release**是否有相关已适配的版本
 
+## 已确认适配的虚拟机/云手机
 
-### 分支
-
-Magisk On VMOS 云手机 (已停更): https://gitee.com/enmmmmmm/magisk-on-vmos-cloudphone
-
-Magisk On VMOS Pro（已停更）: https://gitee.com/enmmmmmm/magisk-on-vmos-pro
+1.中国移动云手机(China Mobile Cloud Phone)  
+2.中国移动云手机极致版(China Mobile Cloud Phone Better Version)  
+3.星云游戏(XingyunGame)  
 
 ### 贡献者
-1.Enmmmmmmmm
+1.Enmmmmmmmm  
+
 2.早茶光
