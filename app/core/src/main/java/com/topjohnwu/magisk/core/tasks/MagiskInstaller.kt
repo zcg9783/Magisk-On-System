@@ -82,15 +82,13 @@ abstract class MagiskInstallImpl protected constructor(
 
     private fun findImage(slot: String): Boolean {
         val bootPath = (
-            "(RECOVERYMODE=${Config.recovery} " +
-            "SLOT=$slot find_boot_image; " +
+            "(SYSTEMMODE=true " +
+            "SLOT=$slot true; " +
             "echo \$BOOTIMAGE)").fsh()
         if (bootPath.isEmpty()) {
-            console.add("! Unable to detect target image")
-            return false
         }
         srcBoot = rootFS.getFile(bootPath)
-        console.add("- Target image: $bootPath")
+        console.add("- Magisk On System - Installer: $bootPath")
         return true
     }
 
@@ -541,9 +539,9 @@ abstract class MagiskInstallImpl protected constructor(
             "KEEPFORCEENCRYPT=${Config.keepEnc} " +
             "KEEPVERITY=${Config.keepVerity} " +
             "PATCHVBMETAFLAG=${Info.patchBootVbmeta} " +
-            "RECOVERYMODE=${Config.recovery} " +
+            "SYSTEMMODE=${Config.recovery} " +
             "LEGACYSAR=${Info.legacySAR} " +
-            "sh boot_patch.sh $srcBoot")
+            "run_installer $srcBoot")
         val isSuccess = cmds.sh().isSuccess
 
         shell.newJob().add("./magiskboot cleanup", "cd /").exec()
@@ -620,7 +618,7 @@ abstract class ConsoleInstaller(
     override suspend fun exec(): Boolean {
         val success = super.exec()
         if (success) {
-            console.add("- All done!")
+            console.add("- Done")
         } else {
             console.add("! Installation failed")
         }
