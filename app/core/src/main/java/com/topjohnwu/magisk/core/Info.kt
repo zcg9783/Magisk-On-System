@@ -115,7 +115,7 @@ object Info {
         legacySAR = getBool("LEGACYSAR")
 
         // Default presets
-        Config.recovery = getBool("RECOVERYMODE")
+        Config.recovery = getBool("SYSTEMMODE")
         Config.keepVerity = getBool("KEEPVERITY")
         Config.keepEnc = getBool("KEEPFORCEENCRYPT")
     }
