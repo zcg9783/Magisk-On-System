@@ -34,7 +34,7 @@ Patch完成后生成flash_all.bat与镜像到out文件夹
 ### 方式二：在已有root的基础上进行安装  
 
 #### Step 1:前往Release页面  
-打开本仓库的[release](https://github.com/zcg9783/magisk-on-system/releases)页面下载以Magisk On System.apk 
+打开本仓库的[release](https://github.com/zcg9783/magisk-on-system/releases)页面下载app-release.apk  
 
 #### Step 2：直接安装
 打开Magisk On System，确认已授予ROOT权限。然后依次点击  
