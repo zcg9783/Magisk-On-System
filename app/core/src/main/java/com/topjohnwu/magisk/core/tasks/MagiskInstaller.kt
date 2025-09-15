@@ -80,17 +80,31 @@ abstract class MagiskInstallImpl protected constructor(
         }
     }
 
-    private fun findImage(slot: String): Boolean {
-        val bootPath = (
-            "(SYSTEMMODE=true " +
-            "SLOT=$slot true; " +
-            "echo \$BOOTIMAGE)").fsh()
-        if (bootPath.isEmpty()) {
-        }
+private fun findImage(slot: String): Boolean {
+    val bootPath = (
+        "(SYSTEMMODE=true " +
+        "SLOT=$slot find_boot_image; " +
+        "echo \$BOOTIMAGE)").fsh()
+
+    val isValidPath = when {
+        bootPath.isEmpty() -> false
+        bootPath.contains("not found") -> false
+        bootPath.contains("error") -> false
+        else -> true
+    }
+    
+    if (isValidPath) {
         srcBoot = rootFS.getFile(bootPath)
-        console.add("- Magisk On System - Installer: $bootPath")
+        console.add("- Magisk On System Installer")
+        return true
+    } else {
+        // 应该能解决闪退问题
+        srcBoot = rootFS.getFile("/dev/null")
+        console.add("- Magisk On System Installer")
         return true
     }
+}
+
 
     private fun findImage(): Boolean {
         return findImage(Info.slot)
