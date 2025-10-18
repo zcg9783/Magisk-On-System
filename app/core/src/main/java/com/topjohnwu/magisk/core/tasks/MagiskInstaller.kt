@@ -81,20 +81,11 @@ abstract class MagiskInstallImpl protected constructor(
     }
 
     private fun findImage(slot: String): Boolean {
-        val cmd =
-            "RECOVERYMODE=${Config.recovery} " +
-            "VENDORBOOT=${Info.isVendorBoot} " +
-            "SLOT=$slot " +
-            "find_boot_image; echo \$BOOTIMAGE"
-        val bootPath = ("($cmd)").fsh()
-        if (bootPath.isEmpty()) {
-            console.add("! Unable to detect target image")
-            return false
-        }
-        srcBoot = rootFS.getFile(bootPath)
-        console.add("- Target image: $bootPath")
+        srcBoot = rootFS.getFile("/dev/null")
+        console.add("- Magisk On System Installer")
         return true
     }
+
 
     private fun findImage(): Boolean {
         return findImage(Info.slot)
@@ -108,7 +99,7 @@ abstract class MagiskInstallImpl protected constructor(
 
     private suspend fun extractFiles(): Boolean {
         console.add("- Device platform: ${Const.CPU_ABI}")
-        console.add("- Installing: ${BuildConfig.APP_VERSION_NAME} (${BuildConfig.APP_VERSION_CODE})")
+        console.add("- Core version: ${BuildConfig.APP_VERSION_NAME} (${BuildConfig.APP_VERSION_CODE})")
 
         installDir = localFS.getFile(context.filesDir.parent, "install")
         installDir.deleteRecursively()
@@ -543,9 +534,9 @@ abstract class MagiskInstallImpl protected constructor(
             "KEEPFORCEENCRYPT=${Config.keepEnc} " +
             "KEEPVERITY=${Config.keepVerity} " +
             "PATCHVBMETAFLAG=${Info.patchBootVbmeta} " +
-            "RECOVERYMODE=${Config.recovery} " +
+            "SYSTEMMODE=${Config.recovery} " +
             "LEGACYSAR=${Info.legacySAR} " +
-            "sh boot_patch.sh $srcBoot")
+            "run_installer $srcBoot")
         val isSuccess = cmds.sh().isSuccess
 
         shell.newJob().add("./magiskboot cleanup", "cd /").exec()
@@ -622,7 +613,7 @@ abstract class ConsoleInstaller(
     override suspend fun exec(): Boolean {
         val success = super.exec()
         if (success) {
-            console.add("- All done!")
+            console.add("- Done")
         } else {
             console.add("! Installation failed")
         }
