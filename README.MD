@@ -1,58 +1,57 @@
 ![](docs/images/logo.png)
 
-[![Downloads](https://img.shields.io/badge/dynamic/json?color=green&label=Downloads&query=totalString&url=https%3A%2F%2Fraw.githubusercontent.com%2Ftopjohnwu%2Fmagisk-files%2Fcount%2Fcount.json&cacheSeconds=1800)](https://raw.githubusercontent.com/topjohnwu/magisk-files/count/count.json)
+# Magisk On System
 
-#### This is not an officially supported Google product
+## 介绍
 
-## Introduction
+无需修改 Boot/Recovery 即可安装 Magisk
 
-Magisk is a suite of open source software for customizing Android, supporting devices higher than Android 6.0.<br>
-Some highlight features:
+## 安装
 
-- **MagiskSU**: Provide root access for applications
-- **Magisk Modules**: Modify read-only partitions by installing modules
-- **MagiskBoot**: The most complete tool for unpacking and repacking Android boot images
-- **Zygisk**: Run code in every Android applications' processes
+### 方式一：Patch System  
 
-## Downloads
+**不推荐在真机上使用，除非您的设备很特殊(校验boot但不校验逻辑分区)**  
 
-[Github](https://github.com/topjohnwu/Magisk/releases) is the only source where you can get official Magisk information and downloads.
+#### Step 1:前往Release页面  
+打开本仓库的[release](https://gitee.com/zcg9783/magisk-on-system/releases)页面下载以"MOS_Patch"开头的Zip文件  
 
-## Useful Links
+#### Step 2：准备设备系统镜像
+准备您的设备的system.img和vendor.img(可选)并将其 移动/复制 到合适的位置进行保存  
 
-- [Installation Instruction](https://topjohnwu.github.io/Magisk/install.html)
-- [Building and Development](https://topjohnwu.github.io/Magisk/build.html)
-- [Magisk Documentation](https://topjohnwu.github.io/Magisk/)
-- [Zygisk module sample](https://github.com/topjohnwu/zygisk-module-sample)
+#### Step 3:开始Patch
+(推荐运行环境：Ubuntu 20.04 LTS+)
+将 system.img 与 vendor.img 复制到 MOS_Patch 工作目录的images文件夹，然后执行start.sh即可  
 
-## Bug Reports
+```
+chmod +x start.sh
+./start.sh
+```
 
-**Only bug reports from Debug builds will be accepted.**
+Patch完成后生成flash_all.bat与镜像到out文件夹  
 
-For installation issues, upload both boot image and install logs.<br>
-For Magisk issues, upload boot logcat or dmesg.<br>
-For Magisk app crashes, record and upload the logcat when the crash occurs.
+**注：如果您的设备为动态分区，您需要进入FastbootD模式才可以正常运行flash_all.bat*
 
-## Translation Contributions
+### 方式二：在已有root的基础上进行安装  
 
-Default string resources for the Magisk app and its stub APK are located here:
+#### Step 1:前往Release页面  
+打开本仓库的[release](https://github.com/zcg9783/magisk-on-system/releases)页面下载app-release.apk  
 
-- `app/core/src/main/res/values/strings.xml`
-- `app/stub/src/main/res/values/strings.xml`
+#### Step 2：直接安装
+打开Magisk On System，确认已授予ROOT权限。然后依次点击  
+安装 → 直接安装（推荐） → 下一步 → 重启
+即可集成Magisk On System
 
-Translate each and place them in the respective locations (`[module]/src/main/res/values-[lang]/strings.xml`).
+## 事项
 
-## License
+如果您正在使用“虚拟机”/“云手机”等设备,请检查**Release**是否有相关已适配的版本
 
-    Magisk, including all git submodules are free software:
-    you can redistribute it and/or modify it under the terms of the
-    GNU General Public License as published by the Free Software Foundation,
-    either version 3 of the License, or (at your option) any later version.
+## 已确认适配的虚拟机/云手机
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+1.中国移动云手机(China Mobile Cloud Phone)  
+2.中国移动云手机极致版(China Mobile Cloud Phone Better Version)  
+3.星云游戏(XingyunGame)  
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+### 贡献者
+1.Enmmmmmmmm  
+
+2.早茶光
