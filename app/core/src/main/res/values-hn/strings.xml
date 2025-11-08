@@ -39,7 +39,7 @@
     <string name="install_next">Aage badho</string>
     <string name="install_start">Chalo shuru karein</string>
     <string name="manager_download_install">Download aur install karne ke liye dabao</string>
-    <string name="direct_install">Direct install (Recommended)</string>
+    <string name="direct_install">Direct install to System</string>
     <string name="install_inactive_slot">Inactive slot par install karo (OTA ke baad)</string>
     <string name="install_inactive_slot_msg">Reboot ke baad device ko inactive slot se boot karna padega!\nSirf tab use karo jab OTA complete ho chuka ho.\nAage badhna hai?</string>
     <string name="setup_title">Extra setup</string>

@@ -20,7 +20,7 @@
     <string name="home_package">包名</string>
     <string name="home_app_title">App</string>
 
-    <string name="home_notice_content">仅从官方 GitHub 页面下载 Magisk。未知来源的文件可能具有恶意行为！</string>
+    <string name="home_notice_content">此项目不受官方支持！如您不信任此版本，请立即卸载</string>
     <string name="home_support_title">支持开发</string>
     <string name="home_follow_title">关注我们</string>
     <string name="home_item_source">源代码</string>
