@@ -423,7 +423,7 @@ impl MagiskD {
     }
 
     pub fn preserve_stub_apk(&self) {
-        let mut info = self.manager_info.lock().unwrap();
+        let mut info = self.manager_info.lock();
 
         let apk = cstr::buf::default()
             .join_path(get_magisk_tmp())
@@ -440,19 +440,19 @@ impl MagiskD {
     }
 
     pub fn get_manager_uid(&self, user: i32) -> i32 {
-        let mut info = self.manager_info.lock().unwrap();
+        let mut info = self.manager_info.lock();
         let (uid, _) = info.get_manager(self, user, false);
         uid
     }
 
     pub fn get_manager(&self, user: i32, install: bool) -> (i32, String) {
-        let mut info = self.manager_info.lock().unwrap();
+        let mut info = self.manager_info.lock();
         let (uid, pkg) = info.get_manager(self, user, install);
         (uid, pkg.to_string())
     }
 
     pub fn ensure_manager(&self) {
-        let mut info = self.manager_info.lock().unwrap();
+        let mut info = self.manager_info.lock();
         let _ = info.get_manager(self, 0, true);
     }
 
